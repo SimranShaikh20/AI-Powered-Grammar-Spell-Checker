@@ -1,29 +1,28 @@
-from flask import Flask, request,render_template
-from Model import SpellCheckerModule
+import streamlit as st
+from spellchecker import SpellChecker
 
-app = Flask(__name__)
-spell_checker_module = SpellCheckerModule()
+st.title('Spell Checker In Python')
 
-# routes
-@app.route('/')
-def index():
-    return render_template('index.html')
-@app.route('/spell',methods=['POST','GET'])
-def spell():
-    if request.method=='POST':
-        text = request.form['text']
-        corrected_text = spell_checker_module.correct_spell(text)
-        corrected_grammar = spell_checker_module.correct_grammar(text)
-        return render_template('index.html',corrected_text=corrected_text,corrected_grammar=corrected_grammar)
-@app.route('/grammar',methods=['POST','GET'])
-def grammar():
-    if request.method == 'POST':
-        file = request.files['file']
-        readable_file = file.read().decode('utf-8',errors='ignore')
-        corrected_file_text = spell_checker_module.correct_spell(readable_file)
-        corrected_file_grammar = spell_checker_module.correct_grammar(readable_file)
-    return render_template('index.html',corrected_file_text=corrected_file_text,corrected_file_grammar=corrected_file_grammar)
+# Initialize SpellChecker
+spell = SpellChecker()
 
-# python main
-if __name__ == "__main__":
-    app.run(debug=True)
+# Text area for user input
+text = st.text_area("Enter Text:", value='', height=None, max_chars=None, key=None)
+
+if st.button('Check Spelling'):
+    if text.strip() == '':
+        st.write('Please enter text for checking')
+    else:
+        try:
+            # Split text into words
+            words = text.split()
+            misspelled = spell.unknown(words)
+
+            if misspelled:
+                st.write("**Misspelled Words:**")
+                for word in misspelled:
+                    st.write(f"- **{word}**: Suggested corrections: {spell.candidates(word)}")
+            else:
+                st.success("No spelling errors found!")
+        except Exception as e:
+            st.error(f"An error occurred while checking the text: {e}")
