@@ -8,7 +8,7 @@ sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
 hindi_words = [
     'भारत', 'में', 'अच्छा', 'लगता', 'है', 'यहां', 'संस्कृति', 'बहुत', 'समृद्ध', 
     'मैं', 'रोज', 'स्कूल', 'जाता', 'हूं', 'अध्ययन', 'करता', 'खुशी', 'हुई', 
-    'आशा', 'करता', 'हूं', 'हम', 'फिर', 'से', 'मिलें'
+    'आशा', 'करता', 'हूं', 'हम', 'फिर', 'से', 'मिलें', 'रहना', 'मुझे', 'आपसे'
 ]
 for word in hindi_words:
     sym_spell.create_dictionary_entry(word, 1)
@@ -28,17 +28,14 @@ common_corrections = {
     "अचछा": "अच्छा",
     "यहा": "यहां",
     "आपका मिलकर": "आपसे मिलकर",
-    "हम फिर से मिले": "हम फिर से मिलें"
+    "हम फिर से मिले": "हम फिर से मिलें",
+    "अध्ययन करता हुई": "अध्ययन करता हूं",
+    "मिलें खुशी हुयी": "मिलकर खुशी हुई"
 }
-
 
 # Function to correct text
 def correct_text(input_text):
-    # Step 1: Apply manual corrections first
-    for incorrect, correct in common_corrections.items():
-        input_text = input_text.replace(incorrect, correct)
-
-    # Step 2: Apply spelling correction word by word
+    # Step 1: Apply spelling correction word by word
     input_tokens = input_text.split()
     corrected_tokens = []
     
@@ -46,7 +43,13 @@ def correct_text(input_text):
         suggestions = sym_spell.lookup(token, Verbosity.CLOSEST, max_edit_distance=2)
         corrected_tokens.append(suggestions[0].term if suggestions else token)
     
-    return " ".join(corrected_tokens)
+    corrected_text = " ".join(corrected_tokens)
+
+    # Step 2: Apply manual corrections
+    for incorrect, correct in common_corrections.items():
+        corrected_text = corrected_text.replace(incorrect, correct)
+
+    return corrected_text
 
 # Streamlit UI
 st.title("🔠 Hindi Spell & Grammar Checker")
