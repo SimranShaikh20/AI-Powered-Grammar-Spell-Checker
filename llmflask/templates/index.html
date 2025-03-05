@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Grammar Checker</title>
+    <style>
+        /* Set Black Background */
+        body {
+            background-color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            background-color: #222;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .sidebar h2 {
+            color: #ffcc00;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Sidebar Options */
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .sidebar a:hover {
+            background-color: #444;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+
+        /* Form Styling */
+        form {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Button Styling */
+        .btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b, #ff8c00, #ff416c);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.07);
+            box-shadow: 0px 0px 10px rgba(255, 165, 0, 0.8);
+        }
+
+        /* Output Styling */
+        .output {
+            background: #444;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>🔍 Select Language</h2>
+        <a href="/" class="language">English Grammar Check</a>
+        <a href="/" class="language">Hindi Grammar Check</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>📝 AI-Powered {{ selected_language }} Grammar & Spell Checker</h1>
+        <p>🔹 Correct spelling, grammar, and context errors instantly!</p>
+
+        <form method="post">
+            <label for="language">Select Language:</label>
+            <select name="language">
+                <option value="English" {% if selected_language == "English" %}selected{% endif %}>English</option>
+                <option value="Hindi" {% if selected_language == "Hindi" %}selected{% endif %}>Hindi</option>
+            </select>
+            <br><br>
+
+            <textarea name="text_input" placeholder="Type or paste your {{ selected_language }} text here..."></textarea>
+            <br><br>
+            
+            <button type="submit" class="btn">✅ Check & Correct</button>
+        </form>
+
+        {% if corrected_text %}
+            <div class="output">
+                <h3>✅ Corrected Text:</h3>
+                <p>{{ corrected_text }}</p>
+            </div>
+        {% elif error_message %}
+            <div class="output">
+                <p style="color: red;">{{ error_message }}</p>
+            </div>
+        {% endif %}
+
+        <!-- Footer -->
+        <div class="footer">
+            ⚡ <strong>Powered by Groq LLMs</strong> | Made with ❤️ by Simran
+        </div>
+    </div>
+
+</body>
+</html>
