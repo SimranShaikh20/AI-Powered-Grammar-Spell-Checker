@@ -1,0 +1,27 @@
+{
+    "English": {
+        "misspellings": {
+            "teh": {"correction": "the", "probability": 0.95},
+            "recieve": {"correction": "receive", "probability": 0.92},
+            "seperate": {"correction": "separate", "probability": 0.90},
+            "definately": {"correction": "definitely", "probability": 0.89},
+            "occurence": {"correction": "occurrence", "probability": 0.88}
+        },
+        "contextual_misuse": {
+            "their": {"correction": "there", "probability": 0.85},
+            "its": {"correction": "it's", "probability": 0.87},
+            "affect": {"correction": "effect", "probability": 0.83}
+        }
+    },
+    "Hindi": {
+        "misspellings": {
+            "नमस्ते": {"correction": "नमस्ते", "probability": 0.98},
+            "हैलो": {"correction": "हेलो", "probability": 0.93},
+            "कैसे": {"correction": "कैसे", "probability": 0.96}
+        },
+        "contextual_misuse": {
+            "कल": {"correction": "काल", "probability": 0.85},
+            "वह": {"correction": "वे", "probability": 0.88}
+        }
+    }
+}
