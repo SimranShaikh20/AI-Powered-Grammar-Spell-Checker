@@ -112,17 +112,6 @@ This project includes **custom CSS styling** for a modern UI:
 - 🛠️ **Custom sidebar** with a sleek layout
 
 ---
-## 🔮 Future Enhancements
-- 🛃 **Voice Input Support**
-- 📚 **Multi-language Support** (Spanish, French, etc.)
-- 🖊 **Auto-correction while typing**
-- 🌐 **Deploy as a Web App**
-
----
-## ❤️ Contribution
-Contributions are welcome! Feel free to **fork** this repo and create a **pull request** with your enhancements.
-
----
 ## 🐟 License
 This project is licensed under the **MIT License**.
 
