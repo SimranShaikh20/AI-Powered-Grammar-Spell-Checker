@@ -69,8 +69,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Groq API Key (Replace with your actual key)
-API_KEY = "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"
+API_KEY = "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"
 
+# Function to Correct Text using Groq API
 def correct_text(text, language):
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
@@ -78,13 +79,23 @@ def correct_text(text, language):
         "Content-Type": "application/json"
     }
 
-    system_prompt = f"You are a highly advanced grammar and spell checker for {language}. Correct the following text while maintaining its meaning. Ensure proper grammar, sentence structure, and context-aware spelling corrections."
+    # Hindi correction without translation
+    if language == "Hindi":
+        system_prompt = (
+            "आप एक अत्याधुनिक हिंदी व्याकरण और वर्तनी सुधारक हैं। "
+            "कृपया दिए गए हिंदी पाठ को सही करें लेकिन उसका अनुवाद न करें। "
+            "केवल व्याकरण, वाक्य संरचना और वर्तनी की त्रुटियों को ठीक करें, अर्थ को वैसा ही रखें।"
+        )
+        user_prompt = f"सुधार करें (अनुवाद न करें): {text}"
+    else:
+        system_prompt = "You are an advanced English grammar and spell checker. Correct the text while maintaining its meaning."
+        user_prompt = f"Correct this English text: {text}"
 
     payload = {
         "model": "mixtral-8x7b-32768",
         "messages": [
             {"role": "system", "content": system_prompt},
-            {"role": "user", "content": f"Correct this text: {text}"}
+            {"role": "user", "content": user_prompt}
         ],
         "temperature": 0.2,
         "max_tokens": 500
@@ -93,7 +104,8 @@ def correct_text(text, language):
     response = requests.post(url, headers=headers, json=payload)
 
     if response.status_code == 200:
-        return response.json()["choices"][0]["message"]["content"]
+        corrected_output = response.json()
+        return corrected_output["choices"][0]["message"]["content"]
     else:
         return f"📌 Error: {response.json()}"
 
@@ -101,26 +113,28 @@ def correct_text(text, language):
 st.sidebar.title("🔍 Select Language")
 selected_option = st.sidebar.radio("Choose:", ["English Grammar Check", "Hindi Grammar Check"])
 
+# Display only the selected language's correction
 if selected_option == "English Grammar Check":
     st.title("📝 AI-Powered **English** Grammar & Spell Checker")
     language = "English"
-else:
+    st.subheader("🔹 Correct spelling, grammar, and context errors instantly! ✨")
+    user_input = st.text_area("✍️ Enter your English text:", height=200, placeholder="Type or paste your text here...")
+
+elif selected_option == "Hindi Grammar Check":
     st.title("📝 AI-Powered **Hindi** Grammar & Spell Checker")
     language = "Hindi"
-
-st.subheader("🔹 Correct spelling, grammar, and context errors instantly! ✨")
-
-user_input = st.text_area(f"✍️ Enter your {language} text:", height=200, placeholder="Type or paste your text here...")
+    st.subheader("🔹 हिंदी व्याकरण और वर्तनी की त्रुटियों को सही करें! ✨")
+    user_input = st.text_area("✍️ अपना हिंदी पाठ यहाँ दर्ज करें:", height=200, placeholder="अपना पाठ यहाँ टाइप करें...")
 
 if st.button("✅ Check & Correct"):
     if user_input.strip() == "":
-        st.warning("⚠️ Please enter some text for correction.")
+        st.warning("⚠️ Input Text cannot be empty! Please enter some text to correct.")
     else:
-        with st.spinner("🔍 Checking and correcting..."):
+        with st.spinner("🔍 Ruuning..."):
             corrected_text = correct_text(user_input, language)
-            st.success("✔️ Correction Complete!")
-            st.markdown("### ✅ **Corrected Text:**")
-            st.text_area("✅ Corrected Text:", corrected_text, height=200)
+            st.success("✔️ Corrected text is here ")
+            
+            st.text_area("✅ Correct text:", corrected_text, height=200)
 
 # Footer
-st.markdown('<div class="footer"> Made with ❤️ by Simran</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: center; color: white;"> Made with ❤️ by Simran</div>', unsafe_allow_html=True)

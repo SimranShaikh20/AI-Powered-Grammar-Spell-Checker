@@ -4,7 +4,6 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-00BFFF?style=for-the-badge&logo=groq&logoColor=white)
 
-
 ## 🚀 Overview
 This project is an AI-powered grammar and spell checker that utilizes **Groq's LLM (Large Language Model)** to correct spelling, grammar, and context errors in both **English and Hindi**. The application is built using **Streamlit** for an interactive user experience.
 
@@ -39,16 +38,22 @@ This project uses **Groq's Mixtral-8x7b-32768** model, an advanced mixture of ex
 
 ---
 ## 📝 System Prompt Used
-The model is instructed with a carefully designed **system prompt** to ensure accurate and context-aware corrections. The prompt used is:
-```plaintext
-You are a highly advanced grammar and spell checker for {language}. Correct the following text while maintaining its meaning. Ensure proper grammar, sentence structure, and context-aware spelling corrections.
-```
-This ensures that the LLM corrects mistakes while preserving the original intent and flow of the text.
+The model is instructed with a carefully designed **system prompt** to ensure accurate and context-aware corrections. The prompts used are:
 
-### 🔄 Why This Prompt Is Used
-- ✅ **Ensures Precision:** The prompt explicitly asks the LLM to focus on correcting grammar and spelling while maintaining context.
+### **English Prompt**
+```plaintext
+You are a highly advanced grammar and spell checker for English. Correct the following text while maintaining its meaning. Ensure proper grammar, sentence structure, and context-aware spelling corrections.
+```
+
+### **Hindi Prompt**
+```plaintext
+आप एक उच्च स्तरीय व्याकरण और वर्तनी सुधारक हैं, जो हिंदी भाषा के लिए बनाया गया है। दिए गए पाठ को सही करें, व्याकरण, वाक्य संरचना और संदर्भ के अनुसार वर्तनी को ठीक करें, जबकि मूल अर्थ को बनाए रखें।
+```
+
+### 🔄 Why These Prompts Are Used
+- ✅ **Ensures Precision:** The prompts explicitly ask the LLM to focus on correcting grammar and spelling while maintaining context.
 - 🌐 **Supports Multiple Languages:** The `{language}` placeholder allows dynamic adaptation for English and Hindi.
-- 🌀 **Preserves Meaning:** The instruction ensures that the original intent of the text remains intact.
+- 💠 **Preserves Meaning:** The instruction ensures that the original intent of the text remains intact.
 - 🎯 **Optimized for LLM Processing:** It minimizes ambiguity, making the model’s responses more predictable and reliable.
 
 ---
@@ -112,6 +117,14 @@ This project includes **custom CSS styling** for a modern UI:
 - 🛠️ **Custom sidebar** with a sleek layout
 
 ---
+## 🔮 Future Enhancements
+- 🚃 **Voice Input Support**
+- 📚 **Multi-language Support** (Spanish, French, etc.)
+- 🖊 **Auto-correction while typing**
+- 🌐 **Deploy as a Web App**
+
+---
+
 ## 🐟 License
 This project is licensed under the **MIT License**.
 
