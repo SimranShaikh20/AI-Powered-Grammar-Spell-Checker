@@ -4,6 +4,11 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-00BFFF?style=for-the-badge&logo=groq&logoColor=white)
 
+
+## 🚀 Try It Out  
+🔗 **Live Demo:** [Click Here](https://ai-powered-grammar-spell-checker-hyndfylzmob5tn4wffyjap.streamlit.app/)
+
+
 ## 🚀 Overview
 This project is an AI-powered grammar and spell checker that utilizes **Groq's LLM (Large Language Model)** to correct spelling, grammar, and context errors in both **English and Hindi**. The application is built using **Streamlit** for an interactive user experience.
 
