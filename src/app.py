@@ -123,4 +123,4 @@ if st.button("✅ Check & Correct"):
             st.text_area("✅ Corrected Text:", corrected_text, height=200)
 
 # Footer
-st.markdown('<div class="footer">⚡ **Powered by Groq LLMs** | Made with ❤️ by Simran</div>', unsafe_allow_html=True)
+st.markdown('<div class="footer"> Made with ❤️ by Simran</div>', unsafe_allow_html=True)
