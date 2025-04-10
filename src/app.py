@@ -69,7 +69,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Groq API Key (Replace with your actual key)
-API_KEY = "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"
+API_KEY = "enter your api key "
 
 # Function to Correct Text using Groq API
 def correct_text(text, language):
