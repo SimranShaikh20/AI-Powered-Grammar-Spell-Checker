@@ -129,21 +129,26 @@ This project includes **custom CSS styling** for a modern UI:
 - 🌐 **Deploy as a Web App**
 
 ---
-## 🛠️ **Project Workflow**
 
-The following diagram represents the workflow of the application:
+
+## 🔄 Workflow
 
 ```mermaid
-graph TD
-    A[User Input Text] --> B[API Call to Groq LLM]
-    B --> C[Groq LLM Processes Text]
-    C --> D{Corrected Text Available?}
-    D -- Yes --> E[Display Corrected Text]
-    D -- No --> F[Show Error Message]
-    E --> G[User Reviews Correction]
-    F --> G
+sequenceDiagram
+    participant User
+    participant Streamlit
+    participant GroqAPI
+    participant MixtralLLM
+    
+    User->>Streamlit: Enters text + selects language
+    Streamlit->>GroqAPI: Sends correction request
+    GroqAPI->>MixtralLLM: Processes with system prompt
+    MixtralLLM->>GroqAPI: Returns corrected text
+    GroqAPI->>Streamlit: Receives response
+    Streamlit->>User: Displays corrected text
 
----
+```
+
 ## 🐟 License
 This project is licensed under the **MIT License**.
 
