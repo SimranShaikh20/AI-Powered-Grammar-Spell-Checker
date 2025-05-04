@@ -129,8 +129,11 @@ This project includes **custom CSS styling** for a modern UI:
 - 🌐 **Deploy as a Web App**
 
 ---
-## 🚀 Project Workflow (Mermaid Diagram)
+## 🛠️ **Project Workflow**
 
+The following diagram represents the workflow of the application:
+
+```mermaid
 graph TD
     A[User Input Text] --> B[API Call to Groq LLM]
     B --> C[Groq LLM Processes Text]
