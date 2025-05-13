@@ -5,6 +5,8 @@
 ![Groq](https://img.shields.io/badge/Groq-00BFFF?style=for-the-badge&logo=groq&logoColor=white)
 
 
+### 📖 Check out my blog: [Click Here ](https://medium.com/@msusimran20/ai-powered-grammar-spell-checker-c9fb4d33975f)
+
 ## 🚀 Try It Out  
 🔗 **Live Demo:** [Click Here](https://ai-powered-grammar-spell-checker-hyndfylzmob5tn4wffyjap.streamlit.app/)
 
