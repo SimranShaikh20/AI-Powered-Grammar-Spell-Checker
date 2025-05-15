@@ -2,9 +2,9 @@ name: CI for Streamlit App
 
 on:
   push:
-    branches: main
+    branches: [main]
   pull_request:
-    branches: main
+    branches: [main]
 
 jobs:
   streamlit-ci:
@@ -24,16 +24,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 🧪 Lint 
+      - name: 🧪 Lint (flake8)
         run: |
           pip install flake8
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics || true
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=venv || true
 
       - name: 🚀 Run Streamlit app test
         run: |
-          nohup streamlit run app.py > streamlit.log 2>&1 &
+          nohup streamlit run src/app.py > streamlit.log 2>&1 &
           sleep 10
-          curl -I http://localhost:8501 || (echo "Streamlit app failed to start!" && cat streamlit.log && exit 1)
+          curl -f http://localhost:8501 || exit 1
 
       - name: ✅ Done
-        run: echo "Streamlit CI test completed!"
+        run: echo "🎉 Streamlit CI test completed successfully!"
