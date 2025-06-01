@@ -69,7 +69,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Groq API Key (Replace with your actual key)
-API_KEY = "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 "
+API_KEY = "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"
 
 # Function to Correct Text using Groq API
 def correct_text(text, language):
@@ -92,7 +92,7 @@ def correct_text(text, language):
         user_prompt = f"Correct this English text: {text}"
 
     payload = {
-        "model": "mixtral-8x7b-32768",
+        "model": "llama3-8b-8192",  # ✅ Updated model
         "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
@@ -100,6 +100,7 @@ def correct_text(text, language):
         "temperature": 0.2,
         "max_tokens": 500
     }
+
 
     response = requests.post(url, headers=headers, json=payload)
 
