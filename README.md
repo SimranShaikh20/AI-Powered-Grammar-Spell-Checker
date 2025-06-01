@@ -23,17 +23,18 @@ This project is an AI-powered grammar and spell checker that utilizes **Groq's L
 - 🏠 Built with **Streamlit** for easy deployment
 
 ---
-## 🌟 Why **Mixtral-8x7b-32768**?
-This project uses **Groq's Mixtral-8x7b-32768** model, an advanced mixture of experts model that balances **speed, accuracy, and efficiency**. It was chosen because:
-- ✅ **High Accuracy:** It effectively detects and corrects grammatical errors while preserving context.
-- ⚡ **Optimized Performance:** Provides quick responses, making it ideal for real-time applications.
-- 💡 **Better Context Understanding:** Unlike smaller models, Mixtral-8x7b-32768 excels at maintaining sentence coherence and nuance.
-- 📚 **Scalability:** Can handle complex and lengthy text inputs efficiently.
+## 🌟 Why **Llama3-8B-8192**?
+This project uses **Groq's Llama3-8B-8192** model, Meta's advanced large language model optimized for fast inference. It was chosen because:
+- ✅ **High Accuracy:** It effectively detects and corrects grammatical errors while preserving context and meaning.
+- ⚡ **Lightning Fast:** Groq's hardware acceleration provides ultra-fast response times, making it ideal for real-time applications.
+- 💡 **Superior Context Understanding:** Llama3-8B excels at maintaining sentence coherence, nuance, and natural language flow.
+- 📚 **Efficient Processing:** Can handle complex and lengthy text inputs with remarkable efficiency and accuracy.
+- 🎯 **Multilingual Support:** Excellent performance in both English and Hindi language correction tasks.
 
 ---
 ## 🌍 How This Project Works
 1. The user enters text that needs correction.
-2. The app sends the text to **Groq's LLM API**, which processes the input using advanced language models.
+2. The app sends the text to **Groq's LLM API**, which processes the input using the advanced Llama3-8B-8192 model.
 3. The LLM analyzes the text for grammar, spelling, and contextual errors.
 4. The corrected text is then returned and displayed to the user.
 
@@ -49,19 +50,22 @@ The model is instructed with a carefully designed **system prompt** to ensure ac
 
 ### **English Prompt**
 ```plaintext
-You are a highly advanced grammar and spell checker for English. Correct the following text while maintaining its meaning. Ensure proper grammar, sentence structure, and context-aware spelling corrections.
+You are an advanced English grammar and spell checker. Correct the text while maintaining its meaning.
 ```
 
 ### **Hindi Prompt**
 ```plaintext
-आप एक उच्च स्तरीय व्याकरण और वर्तनी सुधारक हैं, जो हिंदी भाषा के लिए बनाया गया है। दिए गए पाठ को सही करें, व्याकरण, वाक्य संरचना और संदर्भ के अनुसार वर्तनी को ठीक करें, जबकि मूल अर्थ को बनाए रखें।
+आप एक अत्याधुनिक हिंदी व्याकरण और वर्तनी सुधारक हैं। 
+कृपया दिए गए हिंदी पाठ को सही करें लेकिन उसका अनुवाद न करें। 
+केवल व्याकरण, वाक्य संरचना और वर्तनी की त्रुटियों को ठीक करें, अर्थ को वैसा ही रखें।
 ```
 
 ### 🔄 Why These Prompts Are Used
 - ✅ **Ensures Precision:** The prompts explicitly ask the LLM to focus on correcting grammar and spelling while maintaining context.
-- 🌐 **Supports Multiple Languages:** The `{language}` placeholder allows dynamic adaptation for English and Hindi.
+- 🌐 **Supports Multiple Languages:** Language-specific prompts allow optimal performance for English and Hindi.
 - 💠 **Preserves Meaning:** The instruction ensures that the original intent of the text remains intact.
-- 🎯 **Optimized for LLM Processing:** It minimizes ambiguity, making the model’s responses more predictable and reliable.
+- 🎯 **Optimized for LLM Processing:** It minimizes ambiguity, making the model's responses more predictable and reliable.
+- 🚫 **Prevents Translation:** Specifically instructs Hindi corrections without translation to English.
 
 ---
 ## 🛠️ Installation
@@ -102,10 +106,10 @@ url = "https://api.groq.com/openai/v1/chat/completions"
 headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 
 payload = {
-    "model": "mixtral-8x7b-32768",
+    "model": "llama3-8b-8192",
     "messages": [
-        {"role": "system", "content": f"You are a highly advanced grammar and spell checker for {language}. Correct the following text while maintaining its meaning."},
-        {"role": "user", "content": f"Correct this text: {text_to_correct}"}
+        {"role": "system", "content": "You are an advanced English grammar and spell checker. Correct the text while maintaining its meaning."},
+        {"role": "user", "content": f"Correct this English text: {text_to_correct}"}
     ],
     "temperature": 0.2,
     "max_tokens": 500
@@ -140,12 +144,12 @@ sequenceDiagram
     participant User
     participant Streamlit
     participant GroqAPI
-    participant MixtralLLM
+    participant Llama3LLM
     
     User->>Streamlit: Enters text + selects language
     Streamlit->>GroqAPI: Sends correction request
-    GroqAPI->>MixtralLLM: Processes with system prompt
-    MixtralLLM->>GroqAPI: Returns corrected text
+    GroqAPI->>Llama3LLM: Processes with system prompt
+    Llama3LLM->>GroqAPI: Returns corrected text
     GroqAPI->>Streamlit: Receives response
     Streamlit->>User: Displays corrected text
 
@@ -158,4 +162,4 @@ This project is licensed under the **MIT License**.
 ## 🎯 Author
 **Simran Shaikh**
 
-🚀 Made with ❤️ by **Simran** 
+🚀 Made with ❤️ by **Simran**
