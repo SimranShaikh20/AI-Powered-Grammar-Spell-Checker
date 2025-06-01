@@ -8,7 +8,7 @@ def get_correction(text, language="English"):
     headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
     
     payload = {
-        "model": "mixtral-8x7b-32768",
+        "model": "llama3-8b-8192",
         "messages": [
             {"role": "system", "content": f"You are a highly advanced grammar and spell checker for {language}. Correct the following text while maintaining its meaning."},
             {"role": "user", "content": f"Correct this text: {text}"}
