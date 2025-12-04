@@ -3,7 +3,7 @@ import requests
 
 def get_correction(text, language="English"):
     """Sends text to LLM API and returns corrected output."""
-    API_KEY = "your_groq_api_key"
+    API_KEY = "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"
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
     
